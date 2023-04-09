@@ -100,6 +100,18 @@ class ChangeTextTest {
     }
 
     @Test
+    fun testChangeText1() {
+        val packageName = MODEL_PACKAGE
+        waitForPackage(packageName)
+
+        device.findObject(By.res(packageName, "userInput")).text = textToSetSet
+        device.findObject(By.res(packageName, "buttonChange")).click()
+
+        val result = device.findObject(By.res(packageName, "textToBeChanged")).text
+        assertEquals(result, textToSetSet)
+    }
+
+    @Test
     fun testChangeText() {
         val packageName = MODEL_PACKAGE
         waitForPackage(packageName)
@@ -111,17 +123,7 @@ class ChangeTextTest {
         assertEquals(result, textToSet)
     }
 
-    @Test
-    fun testChangeText1() {
-        val packageName = MODEL_PACKAGE
-        waitForPackage(packageName)
 
-        device.findObject(By.res(packageName, "userInput")).text = textToSetSet
-        device.findObject(By.res(packageName, "buttonChange")).click()
-
-        val result = device.findObject(By.res(packageName, "textToBeChanged")).text
-        assertEquals(result, textToSetSet)
-    }
     @Test
     fun testChangeText2() {
         val packageName = MODEL_PACKAGE
