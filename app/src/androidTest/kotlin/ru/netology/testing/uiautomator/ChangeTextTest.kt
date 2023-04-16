@@ -98,19 +98,6 @@ class ChangeTextTest {
             UiSelector().resourceId("android:id/title").instance(0)
         ).click()
     }
-
-    @Test
-    fun testChangeText1() {
-        val packageName = MODEL_PACKAGE
-        waitForPackage(packageName)
-
-        device.findObject(By.res(packageName, "userInput")).text = textToSetSet
-        device.findObject(By.res(packageName, "buttonChange")).click()
-
-        val result = device.findObject(By.res(packageName, "textToBeChanged")).text
-        assertEquals(result, textToSetSet)
-    }
-
     @Test
     fun testChangeText() {
         val packageName = MODEL_PACKAGE
@@ -122,8 +109,17 @@ class ChangeTextTest {
         val result = device.findObject(By.res(packageName, "textToBeChanged")).text
         assertEquals(result, textToSet)
     }
+    @Test
+    fun testChangeText1() {
+        val packageName = MODEL_PACKAGE
+        waitForPackage(packageName)
 
+        device.findObject(By.res(packageName, "userInput")).text = textToSetSet
+        device.findObject(By.res(packageName, "buttonChange")).click()
 
+        val result = device.findObject(By.res(packageName, "textToBeChanged")).text
+        assertEquals(result, textToSet)
+    }
     @Test
     fun testChangeText2() {
         val packageName = MODEL_PACKAGE
