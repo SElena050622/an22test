@@ -6,17 +6,13 @@ import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.uiautomator.By
 import androidx.test.uiautomator.UiDevice
-//import androidx.test.uiautomator.UiSelector
 import androidx.test.uiautomator.Until
 import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
 
-
-//const val SETTINGS_PACKAGE = "com.android.settings"
 const val MODEL_PACKAGE = "ru.netology.testing.uiautomator"
-
 const val TIMEOUT = 5000L
 
 @RunWith(AndroidJUnit4::class)
@@ -24,7 +20,6 @@ class ChangeTextTest {
 
     private lateinit var device: UiDevice
     private val textToSet = "Netology"
-    //private val textToSetSet = " "
 
 //    @Test
 //    fun testInternetSettings() {
@@ -81,7 +76,6 @@ class ChangeTextTest {
 
     @Before
     fun beforeEachTest() {
-        // Press home
         device = UiDevice.getInstance(InstrumentationRegistry.getInstrumentation())
         device.pressHome()
 
@@ -92,14 +86,6 @@ class ChangeTextTest {
         waitForPackage(packageName)
     }
 
-    /*@Test
-    fun testInternetSettings() {
-        waitForPackage(SETTINGS_PACKAGE)
-
-        device.findObject(
-            UiSelector().resourceId("android:id/title").instance(0)
-        ).click()
-    }*/
     val packageName = MODEL_PACKAGE
     @Test
     fun testChangeText() {
@@ -109,14 +95,12 @@ class ChangeTextTest {
         device.findObject(By.res(packageName, "userInput")).text = textToSet
         device.findObject(By.res(packageName, "buttonChange")).click()
 
-        val result = device.findObject(By.res(packageName, "textToBeChange")).text
+        val result = device.findObject(By.res(packageName, "textToBeChanged")).text
         assertEquals(result, textToSet)
     }
     @Test
     fun testChangeText1() {
-        //val packageName = MODEL_PACKAGE
-        //waitForPackage(packageName)
-        val before = device.findObject(By.res(packageName, "textToBeChange")).text
+        val before = device.findObject(By.res(packageName, "textToBeChanged")).text
 
         device.findObject(By.res(packageName, "userInput")).text = ""
         device.findObject(By.res(packageName, "buttonChange")).click()
@@ -126,14 +110,12 @@ class ChangeTextTest {
     }
     @Test
     fun testChangeText2() {
-        //val packageName = MODEL_PACKAGE
-        //waitForPackage(packageName)
-        val before = device.findObject(By.res(packageName, "textToBeChange")).text
+        val before = device.findObject(By.res(packageName, "textToBeChanged")).text
 
         device.findObject(By.res(packageName, "userInput")).text = ""
         device.findObject(By.res(packageName, "buttonChange")).click()
 
-        val result = device.findObject(By.res(packageName, "textToBeChange")).text
+        val result = device.findObject(By.res(packageName, "textToBeChanged")).text
         assertEquals(result, before)
     }
     @Test
